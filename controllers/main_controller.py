@@ -1,3 +1,4 @@
+from utilities.camera_detection import show_objects_detection
 from views.face_detection_view import FaceDetectionView
 from views.objects_detection_view import ObjectsDetectionView
 
@@ -17,6 +18,9 @@ class MainController:
 
     def show_objects_detection(self):
         # Initialize the face and objects detection views
+        print("akkasokooko")
+
+
         self.objects_detection_view = ObjectsDetectionView(self.main_view.master, self.main_view)
         # Check if the objects detection view needs to be reset
         self.main_view.frame.pack_forget()  # Hide the main frame

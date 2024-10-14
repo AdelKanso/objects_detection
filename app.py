@@ -1,4 +1,6 @@
 import tkinter as tk
+
+from utilities.camera_detection import show_objects_detection
 from views.home_view import HomeView
 from views.objects_detection_view import ObjectsDetectionView
 from views.face_detection_view import FaceDetectionView
@@ -23,7 +25,10 @@ class App(tk.Tk):
 	
 	def show_frame(self, cont):
 		frame = self.frames[cont]
-		frame.tkraise()
-  
+		if cont is ObjectsDetectionView:
+			show_objects_detection()
+		else:
+			frame.tkraise()
+
 app = App()
 app.mainloop()
