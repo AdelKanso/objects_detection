@@ -1,6 +1,5 @@
 import tkinter as tk
 
-import views.objects_detection_view
 import views.home_view
 
 class FaceDetectionView(tk.Frame):
