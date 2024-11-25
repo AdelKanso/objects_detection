@@ -1,12 +1,11 @@
 import tkinter as tk
 from views.face_detection_view import FaceDetectionView
 
-
 class HomeView(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.pack(fill="both", expand=True)
-        self.configure(bg="#f0f8ff")  # Light blue background for the frame
+        self.configure(bg="#f0f8ff")
 
         # Title Label
         self.label = tk.Label(
@@ -52,7 +51,6 @@ class HomeView(tk.Frame):
         self.grid_columnconfigure(1, weight=1)
 
     def create_button(self, text, command, row, column):
-        """Helper function to create styled buttons."""
         button = tk.Button(
             self,
             text=text,

@@ -3,20 +3,16 @@ import numpy as np
 import mediapipe as mp
 
 def draw_by_hand():
-    # Initialize MediaPipe Hands
+    # Initialize
     mp_hands = mp.solutions.hands
     hands = mp_hands.Hands()
     draw_color = (255, 255, 255) 
     erase_color = (0, 0, 0)     
-
-    # Initialize webcam
     cap = cv2.VideoCapture(0)
+    prev_x, prev_y = 0, 0
 
     # Create a blank canvas to draw
     canvas = np.zeros((480, 640, 3), dtype=np.uint8)
-
-    # Initialize previous position variables
-    prev_x, prev_y = 0, 0
 
     # Function to draw lines on canvas
     def draw_line(canvas, start, end, color, thickness=2):
@@ -26,9 +22,8 @@ def draw_by_hand():
     def erase_area(canvas, center, radius, color):
         cv2.circle(canvas, center, radius, color, -1)
 
-    # Main loop
     while True:
-        # Read frame from webcam
+        # Read
         ret, frame = cap.read()
         if not ret:
             break

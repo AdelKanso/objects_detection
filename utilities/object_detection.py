@@ -8,8 +8,6 @@ def objects_detection():
     cap = cv2.VideoCapture(0)
     cap.set(3, 1280)
     cap.set(4, 720)
-
-    # Load the YOLO model
     model = YOLO('../assets/yolov8x.pt')
 
     # Define class names
@@ -42,7 +40,6 @@ def objects_detection():
                 name = classNames[int(cls)]
                 if name in target_classes:
                     cv2.rectangle(img, (x1, y1), (x2, y2), (255, 0, 0), 3)
-
                     confidence = math.ceil((box.conf[0] * 100))
                     cvzone.putTextRect(img, f'{name} {confidence} %', (max(0, x1), max(35, y1)), scale=1, thickness=1)
 

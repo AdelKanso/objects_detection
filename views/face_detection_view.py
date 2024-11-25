@@ -8,7 +8,6 @@ class FaceDetectionView(tk.Frame):
 		tk.Frame.__init__(self, parent)
 		self.general_button = tk.Button(self, text='Back', font=('Helvetica', 20),command = lambda : controller.show_frame(views.home_view.HomeView), width=60)
 		self.general_button.grid(row=0, column=1, columnspan=3,  sticky='nsew')
-
 		self.grid_columnconfigure(0, weight=1)
 		self.grid_columnconfigure(1, weight=1)
 		self.grid_columnconfigure(2, weight=1)
