@@ -23,24 +23,19 @@ def draw_by_hand():
         cv2.circle(canvas, center, radius, color, -1)
 
     while True:
-        # Read
+        # Read image
         ret, frame = cap.read()
         if not ret:
             break
 
-        # Flip the frame horizontally
         frame = cv2.flip(frame, 1)
 
-        # Convert frame to RGB for MediaPipe
+        # Detect hand  using MediaPipe
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-
-        # Detect hand landmarks
         results = hands.process(frame_rgb)
 
-        # Draw landmarks and get hand positions
         if results.multi_hand_landmarks:
             for hand_landmarks in results.multi_hand_landmarks:
-                # Get landmarks of the hand
                 landmarks = hand_landmarks.landmark
                 
                 # Get the coordinates of the index finger tip
@@ -49,12 +44,11 @@ def draw_by_hand():
                 # Get the coordinates of the palm (center of the hand)
                 palm_x, palm_y = int(landmarks[mp_hands.HandLandmark.WRIST].x * frame.shape[1]), int(landmarks[mp_hands.HandLandmark.WRIST].y * frame.shape[0])
                 
-                # Check if the left hand and palm are detected
+                # Check if the left hand and palm are detected erase
                 if results.multi_handedness[0].classification[0].label == 'Left' and landmarks[mp_hands.HandLandmark.WRIST].x < 0.5:
-                    # Erase with the palm
                     erase_area(canvas, (palm_x, palm_y), 140, erase_color)
                 else:
-                    # Draw with the index finger
+                    # Or Draw with the index finger
                     if prev_x != 0 and prev_y != 0:
                         draw_line(canvas, (prev_x, prev_y), (index_tip_x, index_tip_y), draw_color)
                     prev_x, prev_y = index_tip_x, index_tip_y
@@ -69,6 +63,5 @@ def draw_by_hand():
             if key == 27 or cv2.getWindowProperty("Frame", cv2.WND_PROP_VISIBLE) < 1 or cv2.getWindowProperty("Canvas", cv2.WND_PROP_VISIBLE) < 1:
                 break
 
-    # Release resources
     cap.release()
     cv2.destroyAllWindows()

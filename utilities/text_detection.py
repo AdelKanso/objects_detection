@@ -5,7 +5,7 @@ import re
 # Define a function to convert binary strings to letters
 def binary_to_text(binary_str):
     try:
-        return chr(int(binary_str, 2))  # Convert binary to decimal, then to character
+        return chr(int(binary_str, 2))  # Convert binary to decimal, then to ASCII character
     except ValueError:
         return binary_str  # If conversion fails, return the original string
 
@@ -32,11 +32,11 @@ def text_detection():
         text = text.replace(binary, letter)
     
     text="Extracted Text:\n"+text
+    
     # Display the text at the bottom of the image
-    # Get image dimensions
     height,width = image.shape[:2]
-    y0 = height - 50 * (len(text.splitlines()))  # Start text near the bottom
-    dy = 30  # Line spacing
+    y0 = height - 50 * (len(text.splitlines()))
+    dy = 30 
 
     for i, line in enumerate(text.splitlines()):
         y = y0 + i * dy
