@@ -26,7 +26,7 @@ class HomeView(tk.Frame):
         )
         self.create_button(
             text="Face Detection",
-            command=lambda: controller.show_frame(FaceDetectionView),
+            command=lambda: controller.run_detection("Face"),
             row=1,
             column=1,
         )

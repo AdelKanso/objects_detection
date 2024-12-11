@@ -6,6 +6,7 @@ import math
 def objects_detection():
     # Initialize video capture
     cap = cv2.VideoCapture(0)
+    # Resolution set ,for better visibility and consistent performance
     cap.set(3, 1280)
     cap.set(4, 720)
     model = YOLO('../assets/yolov8x.pt')
@@ -31,15 +32,19 @@ def objects_detection():
         results = model(img, stream=True)
 
         for result in results:
-            boxes = result.boxes
+            boxes = result.boxes #Get detected bounding boxes
             for box in boxes:
+                #Extract the bounding box coordinates
                 x1, y1, x2, y2 = box.xyxy[0]
                 x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
                 width, height = x2 - x1, y2 - y1
                 cls = box.cls[0]
                 name = classNames[int(cls)]
+                # Check if the detected obj is in the target classes
                 if name in target_classes:
+                    #Draw rectangle 
                     cv2.rectangle(img, (x1, y1), (x2, y2), (255, 0, 0), 3)
+                    #Calculate the confidence level 
                     confidence = math.ceil((box.conf[0] * 100))
                     cvzone.putTextRect(img, f'{name} {confidence} %', (max(0, x1), max(35, y1)), scale=1, thickness=1)
 
