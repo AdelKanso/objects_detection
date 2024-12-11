@@ -19,14 +19,14 @@ class HomeView(tk.Frame):
 
         # Create buttons
         self.create_button(
-            text="Face Detection",
-            command=lambda: controller.show_frame(FaceDetectionView),
+            text="Object Detection",
+            command=lambda: controller.run_detection("Objects"),
             row=1,
             column=0,
         )
         self.create_button(
-            text="Object Detection",
-            command=lambda: controller.run_detection("Objects"),
+            text="Face Detection",
+            command=lambda: controller.show_frame(FaceDetectionView),
             row=1,
             column=1,
         )
