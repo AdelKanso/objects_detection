@@ -1,7 +1,7 @@
 import tkinter as tk
 from controllers.app_controller import AppController
 from views.home_view import HomeView
-from views.face_detection_view import FaceDetectionView
+
 
 class App(tk.Tk):
     def __init__(self, *args, **kwargs):
@@ -18,10 +18,9 @@ class App(tk.Tk):
         self.controller = AppController(self)
 
         # Add frames to the controller
-        for F in (HomeView, FaceDetectionView):
-            frame = F(container, self.controller)
-            self.controller.add_frame(F, frame)
-            frame.grid(row=0, column=0, sticky="nsew")
+        frame = HomeView(container, self.controller)
+        self.controller.add_frame(HomeView, frame)
+        frame.grid(row=0, column=0, sticky="nsew")
 
         # Show the initial frame
         self.controller.show_frame(HomeView)

@@ -1,4 +1,4 @@
-import tkinter as tk
+from utilities.face_detection import face_detection_webcam
 from utilities.object_detection import objects_detection
 from utilities.text_detection import text_detection
 from utilities.hand_detection import draw_by_hand
@@ -23,6 +23,8 @@ class AppController:
         """Perform detection based on the detection type."""
         if detection_type == "Objects":
             objects_detection()
+        elif detection_type == "Face":
+            face_detection_webcam("./assets/trained_model/face_detection_model.pth")
         elif detection_type == "Hand":
             draw_by_hand()
         elif detection_type == "Text":

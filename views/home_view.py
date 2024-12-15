@@ -1,5 +1,4 @@
 import tkinter as tk
-from views.face_detection_view import FaceDetectionView
 
 class HomeView(tk.Frame):
     def __init__(self, parent, controller):
