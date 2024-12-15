@@ -1,3 +1,4 @@
+#region Libraries Imports
 import os
 import cv2
 import torch
@@ -8,10 +9,12 @@ from torchvision.models.detection.rpn import AnchorGenerator
 from torchvision.ops import MultiScaleRoIAlign
 from torchvision.transforms.functional import to_tensor
 from tqdm import tqdm
+#endregion
 
 # ----------------------
 # Dataset Class
 # ----------------------
+#region Dataset Class
 class FaceDetectionDataset(Dataset):
     def __init__(self, image_folder, label_folder, transform=None):
         self.image_folder = image_folder
@@ -33,6 +36,10 @@ class FaceDetectionDataset(Dataset):
         image_resized = cv2.resize(image, (224, 224))
         image_resized = to_tensor(image_resized)
 
+        # ----------------------
+        # Bounding Box Calculation
+        # ----------------------
+        #region Bounding Boxes
         boxes = []
         labels = []
         if os.path.exists(label_path):
@@ -48,16 +55,19 @@ class FaceDetectionDataset(Dataset):
                             y_max = (y + box_h / 2) * 224
                             boxes.append([x_min, y_min, x_max, y_max])
                             labels.append(1)  # Face class
+        #endregion
 
         boxes = torch.tensor(boxes, dtype=torch.float32) if boxes else torch.empty((0, 4), dtype=torch.float32)
         labels = torch.tensor(labels, dtype=torch.int64) if labels else torch.empty((0,), dtype=torch.int64)
 
         target = {"boxes": boxes, "labels": labels}
         return image_resized, target
+#endregion
 
 # ----------------------
 # Simple CNN Backbone
 # ----------------------
+#region Simple CNN Backbone
 class SimpleCNN(nn.Module):
     def __init__(self):
         super(SimpleCNN, self).__init__()
@@ -73,10 +83,12 @@ class SimpleCNN(nn.Module):
 
     def forward(self, x):
         return self.features(x)
+#endregion
 
 # ----------------------
 # Initialize and Train the Model
 # ----------------------
+#region Main Training Code
 if __name__ == "__main__":
     # Paths
     TRAIN_IMAGES_PATH = "C:/Users/lenovo/Downloads/Face_Detection_DataSet/images/val"
@@ -132,3 +144,4 @@ if __name__ == "__main__":
     # Save the trained model
     torch.save(model.state_dict(), "FaceDetectionModel.pth")
     print("Model saved as 'FaceDetectionModel.pth'")
+#endregion
