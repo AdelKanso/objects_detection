@@ -1,83 +1,83 @@
-Objects Detection
+# Objects Detection
 
-Project Description
-
+## Project Description
 Objects Detection is a Python-based project that utilizes state-of-the-art computer vision and deep learning frameworks to detect and recognize objects in real-time or from static images. The project leverages YOLO and MediaPipe libraries for efficient and accurate detection. It includes:
 
-Object Detection using YOLO
+- **Object Detection** using YOLO
+- **OCR** functionality using PyTesseract
+- **Hand Drawing Features** using MediaPipe
+- **Face Detection**: Training code for face detection using deep learning frameworks
+- **Demo for Trained Models**: Implementation of a demo script for running inference with the generated model from the training process
 
-OCR functionality using PyTesseract
-
-Hand Drawing Features using MediaPipe
-
-Face Detection: Training code for face detection using deep learning frameworks
-
-Demo for Trained Models: Implementation of a demo script for running inference with the generated model from the training process
-
-Setup Instructions
-
+## Setup Instructions
 Follow the steps below to set up your development environment and get started with the project:
 
-Prerequisites
+### Prerequisites
+Ensure you have Python installed on your system. You can download it from [Python.org](https://www.python.org/).
 
-Ensure you have Python installed on your system. You can download it from Python.org.
-
-Installation Steps
-
+### Installation Steps
 Run the following commands to install the required dependencies:
 
-Install OpenCV for image processing:
+1. Install OpenCV for image processing:
+   ```bash
+   pip install opencv-python
+   ```
 
-pip install opencv-python
+2. Install PyTorch for deep learning:
+   ```bash
+   pip install torch
+   ```
 
-Install PyTorch for deep learning:
+3. Install TorchVision for image transformations:
+   ```bash
+   pip install torchvision
+   ```
 
-pip install torch
+4. Install TorchAudio for audio processing (optional):
+   ```bash
+   pip install torchaudio
+   ```
 
-Install TorchVision for image transformations:
+5. Install NumPy for numerical computations:
+   ```bash
+   pip install numpy
+   ```
 
-pip install torchvision
+6. Install Tkinter for GUI (optional):
+   ```bash
+   pip install tkinter
+   ```
 
-Install TorchAudio for audio processing (optional):
+7. Install MediaPipe for hand and object detection:
+   ```bash
+   pip install mediapipe
+   ```
 
-pip install torchaudio
+8. Install YOLO for object detection:
+   ```bash
+   pip install yolo
+   ```
 
-Install NumPy for numerical computations:
+9. Install the Ultralytics package for YOLO:
+   ```bash
+   pip install ultralytics
+   ```
 
-pip install numpy
+10. Install CVZone for image processing utilities:
+    ```bash
+    pip install cvzone
+    ```
 
-Install Tkinter for GUI (optional):
+11. Install PyTesseract for OCR functionality:
+    ```bash
+    pip install pytesseract
+    ```
 
-pip install tkinter
-
-Install MediaPipe for hand and object detection:
-
-pip install mediapipe
-
-Install YOLO for object detection:
-
-pip install yolo
-
-Install the Ultralytics package for YOLO:
-
-pip install ultralytics
-
-Install CVZone for image processing utilities:
-
-pip install cvzone
-
-Install PyTesseract for OCR functionality:
-
-pip install pytesseract
-
-Usage
-
+## Usage
 After setting up your environment, you can run the project scripts to detect objects. Ensure that your input data (images or videos) is accessible and properly configured for the detection pipeline.
 
-Contributions
-
+## Contributions
 Contributions are welcome! Feel free to open issues or submit pull requests to enhance the project.
 
-License
-
-This project is licensed under the MIT License.
+## License
+This project is licensed under the [MIT License](LICENSE).
