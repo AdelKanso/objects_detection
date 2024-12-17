@@ -1,7 +1,6 @@
 import os
 import cv2
 import torch
-import random
 from torchvision.transforms import functional as F
 from torchvision.models.detection import fasterrcnn_resnet50_fpn
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
@@ -15,19 +14,17 @@ def face_detection_webcam(model_path, score_threshold=0.5, device=None):
         score_threshold (float): Minimum score for displaying a detected face.
         device (torch.device, optional): Device to run the model on. If None, automatically selects GPU if available.
 
-    Returns:
-        None
+ 
     """
     # Function to visualize predictions
     def visualize_predictions(image, boxes, labels, scores, score_threshold):
         for box, label, score in zip(boxes, labels, scores):
             if score >= score_threshold:  # Filter predictions by score threshold
                 x_min, y_min, x_max, y_max = box
-                random_score = random.uniform(75, 85)
                 # Draw bounding box
                 cv2.rectangle(image, (int(x_min), int(y_min)), (int(x_max), int(y_max)), (0, 255, 0), 2)
-                # Add label and random score
-                text = f"Face: {random_score:.1f}%"
+                # Add label and actual model score
+                text = f"Face: {score * 100:.1f}%"
                 cv2.putText(image, text, (int(x_min), int(y_min) - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
         return image
 
